@@ -4,6 +4,10 @@ People requested that i make this open sourced so why not.
 > Disclaimer: I am not a web developer! I know absolutely nothing about designing interfaces or making something look good and perform well. Because of this, I have no idea how to make this mobile-friendly. I am willing to bet I used some convoluted methods to get things working. Please don’t go too crazy on my practices. I learned from bits and pieces of documentation, YouTube, Google, and ChatGPT. That said, here you go.
 Currently live [here](https://error430.dev)
 
+## Showcase
+![](https://cdn.discordapp.com/attachments/1313573387003625472/1332204117723971584/image.png?ex=67951004&is=6793be84&hm=056d0b24dc6db20d2cf6921630f1969ee0ab21053d61722c020da9601b30c55b&)
+
+
 ## Prerequisites
  * [Node.js](https://nodejs.org) (I used 22.0.0)
  * [pnpm](https://pnpm.io)
