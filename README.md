@@ -1,38 +1,47 @@
-# sv
+People requested that i make this open sourced so why not.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+# Error's website!
+> Disclaimer: I am not a web developer! I know absolutely nothing about designing interfaces or making something look good and perform well. Because of this, I have no idea how to make this mobile-friendly. I am willing to bet I used some convoluted methods to get things working. Please don’t go too crazy on my practices. I learned from bits and pieces of documentation, YouTube, Google, and ChatGPT. That said, here you go.
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Prerequisites
+ * [Node.js](https://nodejs.org) (I used 22.0.0)
+ * [pnpm](https://pnpm.io)
+ * [NGINX](https://nginx.org) (for serving the site)
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Installation
+ * Install the necessary prerequisites as needed by your specific use case.
 
-# create a new project in my-app
-npx sv create my-app
+ * [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository
+```sh
+git clone git@github.com:Err0r430/website.git
 ```
 
-## Developing
+* Install package dependencies:
+```sh
+cd /path/to/project
+pnpm install
+```
+## Development
+* To run the site locally, run the following command in the project root
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```sh
+pnpm dev
 ```
 
-## Building
+* The site will be exposed at `http://localhost:5147`. (or whatever your vite config says)
 
-To create a production version of your app:
+## Production
 
-```bash
-npm run build
+* To build for production, run the following commands in project root
+```sh
+pnpm build
 ```
+```sh
+pnpm preview
+```
+## Final notes
+I used a proprietary nginx config to forward my domain (error430.dev) to my servers localhost and used certbot for ssl.
 
-You can preview the production build with `npm run preview`.
+As I said, I am no web dev and am not familiar with svelte as much as I am with something like nextjs. I genuinely loved making some of these elements (particularly the windows error popup) and following tutorials for this. I will 100% revisit svelte in the future and might improve this in the future. If you know of a way to improve things or want to spend some of your time sifting through the horribly structured project to make a PR then by all means thank you! Otherwise, this was a super fun project I spent ~3h on. 
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
