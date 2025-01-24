@@ -2,7 +2,7 @@ People requested that i make this open sourced so why not.
 
 # Error's website!
 > Disclaimer: I am not a web developer! I know absolutely nothing about designing interfaces or making something look good and perform well. Because of this, I have no idea how to make this mobile-friendly. I am willing to bet I used some convoluted methods to get things working. Please don’t go too crazy on my practices. I learned from bits and pieces of documentation, YouTube, Google, and ChatGPT. That said, here you go.
-
+Currently live [here](https://error430.dev)
 
 ## Prerequisites
  * [Node.js](https://nodejs.org) (I used 22.0.0)
