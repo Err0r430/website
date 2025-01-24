@@ -1,11 +1,9 @@
-<!-- MainComponent.svelte -->
 <script>
     import { onMount } from 'svelte';
     import ErrorPopup from './popup.svelte';
-    import DummySite from './dummy.svelte';
     import Overlay from './overlay.svelte';
     import Site from './site.svelte';
-    import InteractScreen from './interact.svelte'; // Import the interact screen component
+    import InteractScreen from './interact.svelte';
 
     let isLoading = true;
     let hasSeenPopup = false;
@@ -22,7 +20,7 @@
     let showOverlay = false;
     let showPopup = false;
 
-    let isReady = false; // New state variable to track readiness
+    let isReady = false;
 
     const handleAudioEnd = (/** @type {{ target: any; }} */ event) => {
         const audio = event.target;
@@ -40,6 +38,7 @@
         showOverlay = false;
         hasSeenPopup = true;
         music.volume = 0.5;
+        music.currentTime = 5;
         music.play();
     }
 
@@ -48,7 +47,7 @@
         setTimeout(() => {
             triggerShowOverlay();
             triggerShowPopup();
-        }, 2000);
+        }, 800);
     }
 
     function triggerShowOverlay() {
@@ -56,6 +55,7 @@
     }
 
     function triggerShowPopup() {
+        errorSound.volume = 0.1
         errorSound.play();
         setTimeout(() => {
             console.log('Showing popup');
@@ -81,9 +81,11 @@
 {:else}
     <!-- Main application content -->
     {#if hasSeenPopup}
-        <Site />
+        <!-- Pass the music element to the Site component -->
+        <Site {music} />
     {:else}
-        <DummySite />
+        <!-- Show the interact screen as the dummy site -->
+        <InteractScreen handleClick={handleInteractClick} />
     {/if}
 
     {#if showOverlay}

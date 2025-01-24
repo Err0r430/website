@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Lexend-Giga';
+    src: url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
+}
+
+* {
+    font-family: "Lexend-Giga";
+}
+
+.black-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    cursor: default; /* Changed from pointer to default */
+    z-index: 1;
+    text-align: center; /* Ensure multi-line text is centered */
+}
+
+
+.captcha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.captcha-content {
+    text-align: center; /* Centers content horizontally within the container */
+}
+
+.captcha-image {
+    display: block; /* Ensures the image behaves like a block element */
+    margin: 0 auto; /* Centers the image */
+}
+
+.captcha-text {
+    margin-top: 10px; /* Adds spacing between the image and text */
+    font-size: 25px; /* Adjust font size as needed */
+    color: #ffffff; /* Set text color */
+}
+
+.captcha-input {
+    outline: none; /* Removes the default outline */
+    margin-top: 10px;
+    font-size: 20px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center; /* Center the text inside the input */
+}
+
+.captcha-input:focus {
+    border-color: #666; /* Optional: Add a custom border color on focus for better UX */
+}

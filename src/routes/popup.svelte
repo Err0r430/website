@@ -34,7 +34,7 @@
         <div class="popup-content">
             <!-- Content of the popup -->
             <h3>An error has occurred</h3>
-            <p>Windows is checking for a solution to the problem...</p>
+            <p>Windows is checking for a solution to your problem...</p>
             <div class="progress-bar">
                 <div class="progress-segment"></div>
             </div>
