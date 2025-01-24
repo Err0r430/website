@@ -1,0 +1,203 @@
+* {
+    user-select: none;
+}
+
+:root {
+    --text-color: #0636A1;
+    --progressbar-color: #00B21E;
+    --outline-color: #1284D8;
+    --footer-color: #F1F1F1;
+    --footer-outline: #E0E0E0;
+    --background: #0E0E0E;
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('/fonts/segoeui.ttf')
+}
+
+
+body {
+    background-color: var(--background);
+}
+
+.errorpopup-container {
+    z-index: 11;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Push the footer to the bottom */
+    width: 490px;
+    height: 230px;
+    background-color: aliceblue;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: var(--outline-color) solid 1px;
+}
+
+.titlebar {
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center; /* Ensures all children are vertically centered */
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.crash-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px; /* Adjust spacing as needed */
+    display: block; /* Prevent inline element quirks */
+}
+
+.app-name {
+    display: flex;
+    align-items: center; /* Align icon and text in the same container */
+    gap: 5px; /* Adjust spacing between icon and text */
+    color: black
+}
+
+.popup-buttons {
+    margin-left: auto;
+    display: flex; /* Make the icons a flex container */
+    align-items: center; /* Vertically align icons within the titlebar */
+    gap: 15px; /* Add spacing between the icons */
+    padding-right: 10px; /* Optional: Adjust spacing from the right */
+}
+
+.popup-icon {
+    width: 13px;
+    height: 13px;
+    display: block; /* Avoid inline alignment issues */
+}
+
+.minimize-icon {
+    padding-right: 30px;
+}
+
+.maximize-icon {
+    padding-right: 30px;
+    width: 13px;
+    height: 13px;
+}
+
+
+.popup-content {
+    padding-top: 10px;
+    flex-grow: 1; /* Allow the content area to expand */
+    overflow: auto; /* Enable scrolling if content overflows */
+}
+
+.popup-content h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 20px;
+    color: var(--text-color);
+    letter-spacing: 0.2px;
+}
+
+.popup-content p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 20px;
+    color: black;
+    letter-spacing: 0.2px;
+}
+
+
+.popup-footer {
+    color: white;
+    padding: 10px; /* Consistent padding for the footer */
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center; /* Center text if needed */
+    background-color: var(--footer-color); /* Background color for clarity */
+    border-top: var(--footer-outline) solid 1px; /* Add a border for visual separation */
+    display: flex; /* Use flexbox to align the button */
+    justify-content: center; /* Center the button horizontally */
+    align-items: center; /* Center the button vertically */
+}
+
+.footer-button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 4px 20px; /* Add padding inside the button */
+    margin: 0; /* Ensure the button itself does not add margin */
+    border: 1px solid var(--outline-color); /* Button border */
+    border-radius: 4px; /* Optional: Rounded corners */
+    color: black; /* Text color */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.2s ease; /* Add a hover effect */
+    margin-left: auto;
+}
+
+.footer-button:hover {
+    background-color: var(--footer-outline); /* Change background on hover */
+    transition: all 0.1s ease-in-out; /* Add a hover effect */
+}
+
+.progress-bar {
+    width: calc(90% - 20px); /* Adjust width to align with text (minus padding of 20px) */
+    height: 18px; /* Height of the bar */
+    background-color: #e0e0e0; /* Background color of the bar */
+    border: 1px solid #b0b0b0; /* Optional: Border for the bar */
+    margin: 10px 0 0 20px; /* Align left edge with text (padding-left: 20px) */
+    position: relative;
+    overflow: hidden; /* Prevent the segment from overflowing */
+    border-radius: 0; /* No rounded corners */
+}
+
+.progress-segment {
+    width: 30%; /* Size of the scrolling segment */
+    height: 100%; /* Fill the height of the bar */
+    background-color: var(--progressbar-color); /* Green fill */
+    position: absolute;
+    animation: slide-progress 2s ease infinite; /* Smooth scrolling */
+}
+
+/* Keyframes for the segment sliding across */
+@keyframes slide-progress {
+    0% {
+        left: -50%; /* Start slightly off-screen */
+    }
+    100% {
+        left: 100%; /* Move fully off-screen on the right */
+    }
+}
+
+.fade-container {
+    z-index: 11;
+    position: fixed; /* Fixed positioning to make it relative to the viewport */
+    top: 5%; /* Adjust this value to control the vertical positioning */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset to perfectly center the container */
+    text-align: center;
+    margin-top: 0; /* No need for margin since it's positioned absolutely */
+    width: auto; /* Automatically adjust to the content */
+}
+
+.fade-down-text {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeDown 0.5s ease forwards;
+    font-size: 18px;
+    color: #333;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

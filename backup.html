@@ -1,0 +1,30 @@
+<div class="errorpopup-container">
+    <!-- Title bar container -->
+    <div class="titlebar">
+        <div class="app-name">
+            <!-- Name of the app thats crashing -->
+            <img src="/favicon.png" alt="Crash icon" class="crash-icon">
+            website.exe
+        </div>
+        <div class="popup-buttons">
+            <!-- Buttons for the popup -->
+            <img src="/images/minimize_popup.png" alt="Close icon" class="popup-icon minimize-icon">
+            <img src="/images/maximize_popup.png" alt="Maximize icon" class="popup-icon maximize-icon">
+            <img src="/images/close_popup.png" alt="Close icon" class="popup-icon close-icon">
+
+        </div>
+    </div>
+
+    <div class="popup-content">
+        <!-- Content of the popup -->
+        <h3>An error has occurred</h3>
+        <p>Windows is checking for a solution to the problem...</p>
+        <div class="progress-bar">
+            <div class="progress-segment"></div>
+        </div>
+    </div>
+
+    <div class="popup-footer">
+        <button class="footer-button" onclick={close}>Close</button>
+    </div>
+</div>
