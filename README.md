@@ -44,6 +44,10 @@ pnpm build
 ```sh
 pnpm preview
 ```
+
+## Tools
+* [Captcha Gen](https://usefoyer.com/tools/captcha-generator)
+
 ## Final notes
 I used a proprietary nginx config to forward my domain (error430.dev) to my servers localhost and used certbot for ssl.
 
