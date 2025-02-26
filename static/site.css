@@ -139,7 +139,7 @@ html, body {
     left: 0;
 }
 
-.gradient-bg svg {
+svg {
     position: fixed;
     top: 0;
     left: 0;

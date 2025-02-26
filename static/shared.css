@@ -8,12 +8,32 @@
     --outline-color: #1284D8;
     --footer-color: #F1F1F1;
     --footer-outline: #E0E0E0;
-    --background: #0E0E0E;
+    --background: #0e0e0e;
 }
 
 @font-face {
     font-family: 'Segoe UI';
     src: url('/fonts/segoeui.ttf')
+}
+
+@font-face {
+    font-family: 'SF Pro Bold';
+    src: url('/fonts/SFProBold.otf')
+}
+
+@font-face {
+    font-family: 'SF Pro Medium';
+    src: url('/fonts/SFProMedium.otf')
+}
+
+@font-face {
+    font-family: 'SF Pro Thin';
+    src: url('/fonts/SFProThin.otf')
+}
+
+@font-face {
+    font-family: 'SF Pro Regular';
+    src: url('/fonts/SFProRegular.otf')
 }
 
 

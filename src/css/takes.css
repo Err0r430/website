@@ -1,0 +1,143 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+:root {
+    --text-main: #eff0e8;
+    --text-secondary: #ececec;
+    --secondary-background: #0f0f0f;
+    --secondary-bg-stepup: #111111;
+    --secondary-bg-lighter: #1f1f1f;
+}
+
+* {
+    letter-spacing: 1.79px;
+    user-select: text;
+}
+
+.take-container-header {
+    font-family: 'SF Pro Bold', sans-serif;
+    margin-top: 5rem;
+    font-size: 4rem;
+    color: var(--text-main);
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+}
+
+.take-container {
+    color: var(--text-secondary);
+    background: linear-gradient(180deg, var(--secondary-background), var(--secondary-bg-stepup));
+    font-family: 'SF Pro Regular', sans-serif;
+    letter-spacing: 3px;
+    font-size: 2rem;
+    border: 1px solid var(--secondary-bg-lighter);
+    line-height: 2.5rem;
+    
+    /* Flex settings for vertical stacking and centering items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Styling enhancements */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    
+    /* Center container on screen */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Optional max-width and text alignment */
+    text-align: center;
+}
+
+.take-title-text {
+    position: relative;
+}
+
+.take-title-text::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* adjust as needed */
+    left: 0;
+    height: 2px;
+    background: var(--text-main);
+    width: 0%;
+    animation: underline 1s cubic-bezier(.32,.28,.48,1.01) forwards;
+}
+
+@keyframes underline {
+    to {
+        width: 100%;
+    }
+}
+
+.icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2rem;  /* Adjust spacing as needed */
+    z-index: 10;      /* Ensure it appears on top */
+}
+
+.home-icon {
+    color: var(--text-main);
+    font-size: 2rem;
+}
+
+.hover-target {
+    display: inline-block;
+    padding: 1rem;
+    background: var(--secondary-background);
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.tooltip-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--text-main);
+    font-family: 'SF Pro Thin', sans-serif;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}
+
+.path-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2rem;
+    z-index: 10;
+    color: var(--text-main);
+    font-family: 'SF Pro Regular', sans-serif;
+    font-size: 1.2rem;
+}
+
+.thin {
+    font-family: 'SF Pro Thin', sans-serif;
+    filter: brightness(1);
+}
+
+.dim {
+    filter: brightness(0.5);
+}
+
+.no-select {
+    user-select: none;
+}
