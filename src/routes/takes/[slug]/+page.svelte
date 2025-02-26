@@ -68,7 +68,9 @@
 	<div class="icon-container">
 		<i class="fa fa-home home-icon" aria-hidden="true"
 			onmouseenter={() => showTooltip("Take me home", { position: TooltipPosition.BottomLeft })}
-			onmouseleave={hideTooltip}>
+			onmouseleave={hideTooltip}
+			onmousedown={() => window.location.href = "/?bypass=true"}
+			>
 		</i>
 	</div>
 

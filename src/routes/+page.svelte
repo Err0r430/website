@@ -29,7 +29,12 @@
     };
 
     onMount(() => {
-        isLoading = false; // Set loading to false after mount
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('bypass') === 'true') {
+            isReady = true;
+            hasSeenPopup = true;
+        }
+        isLoading = false;
     });
 
     function closePopup() {
@@ -43,7 +48,6 @@
     }
 
     function runSequence() {
-        // Show overlay after 2 seconds
         setTimeout(() => {
             triggerShowOverlay();
             triggerShowPopup();
@@ -55,7 +59,7 @@
     }
 
     function triggerShowPopup() {
-        errorSound.volume = 0.1
+        errorSound.volume = 0.1;
         errorSound.play();
         setTimeout(() => {
             console.log('Showing popup');
@@ -64,8 +68,8 @@
     }
 
     function handleInteractClick() {
-        isReady = true; // User has interacted, proceed to load the app
-        runSequence(); // Start the existing sequence
+        isReady = true;
+        runSequence();
     }
 </script>
 
@@ -73,18 +77,13 @@
 <audio bind:this={music} src="/music.mp3" preload="auto" on:ended={handleAudioEnd}></audio>
 
 {#if isLoading}
-    <!-- Prevents flash while checking localStorage -->
     <div style="display: none;"></div>
 {:else if !isReady}
-    <!-- Show the interact screen if not ready -->
     <InteractScreen handleClick={handleInteractClick} />
 {:else}
-    <!-- Main application content -->
     {#if hasSeenPopup}
-        <!-- Pass the music element to the Site component -->
         <Site {music} />
     {:else}
-        <!-- Show the interact screen as the dummy site -->
         <InteractScreen handleClick={handleInteractClick} />
     {/if}
 
