@@ -78,39 +78,23 @@
   
   <style>
     @import '/static/site.css';
-  
-    /* Style for the mute button */
-    .mute-button {
-    position: fixed;
-    bottom: 20px;
-    left: 50%; /* Position the left edge at 50% of the viewport width */
-    transform: translateX(-50%); /* Shift the button left by 50% of its width to center it */
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    z-index: 9999; /* Ensure it's on top of other elements */
-    transition: background-color 0.3s ease;
-}
-  
-    .mute-button:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
   </style>
   
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
   />
-  
+
+  <div class="takes-redirector"
+  >
+    <p
+      aria-hidden="true"
+  onmousedown={() => window.location.href = "/takes/list"}
+    >Click me</p>
+  </div>
+
   <div class="text-container">
+
     <div class="main-text">
       {#each splitText(mainText) as char, index}
         <span
@@ -187,7 +171,7 @@
   <button
     type="button"
     class="mute-button"
-    on:click={toggleMute}
+    onclick={toggleMute}
     aria-label={isMuted ? "Unmute" : "Mute"}
   >
     {#if isMuted}

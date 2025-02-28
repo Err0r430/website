@@ -239,3 +239,41 @@ svg {
 .mute-button:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+
+.mute-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%; /* Position the left edge at 50% of the viewport width */
+    transform: translateX(-50%); /* Shift the button left by 50% of its width to center it */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    z-index: 100; /* Ensure it's on top of other elements */
+    transition: background-color 0.3s ease;
+}
+
+.mute-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.takes-redirector {
+    pointer-events: all;
+    z-index: 900;
+    color: white;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    font-family: 'SF Pro Medium', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-left: 1%;
+}

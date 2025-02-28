@@ -12,6 +12,7 @@
     user-select: text;
 }
 
+
 .take-container-header {
     font-family: 'SF Pro Bold', sans-serif;
     margin-top: 5rem;
@@ -64,6 +65,22 @@
     background: var(--text-main);
     width: 0%;
     animation: underline 1s cubic-bezier(.32,.28,.48,1.01) forwards;
+}
+
+.underline {
+    position: relative;
+    display: inline-block; /* Ensures proper sizing for inline text */
+}
+
+.underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* adjust as needed */
+    left: 0;
+    height: 2px;
+    background: var(--text-main);
+    width: 0;
+    animation: underline 1s cubic-bezier(.32, .28, .48, 1.01) forwards;
 }
 
 @keyframes underline {
@@ -140,4 +157,10 @@
 
 .no-select {
     user-select: none;
+}
+
+.grid-take-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
 }

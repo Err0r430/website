@@ -7,17 +7,11 @@ export enum ETakes {
     accessories = "accessories",
     learningCode = "learningcode",
     os = "os",
+    apps = "apps",
+
+
     list = "list",
-    
-
     unknown = "unknown", // Default "I dont have a take on this"
-}
-
-export enum TooltipPosition {
-    BottomLeft,
-    BottomRight,
-    TopLeft,
-    TopRight
 }
 
 export interface TakeData {
@@ -28,8 +22,8 @@ export interface TakeData {
 
 export const takes: Record<ETakes, TakeData> = {
     [ETakes.ide]: {
-        title: "IDE",
-        description: "I have a take on IDEs",
+        title: "IDEs",
+        description: "That place you write code in.",
         points: [
             "I have a take on VSCode",
             "I have a take on Sublime",
@@ -37,23 +31,23 @@ export const takes: Record<ETakes, TakeData> = {
     },
     [ETakes.ai]: {
         title: "AI",
-        description: "I have a take on AI",
+        description: "Smart robot that isn't actually smart.",
         points: [
             "I have a take on GPT",
             "I have a take on ChatGPT",
         ],
     },
     [ETakes.terminal]: {
-        title: "Terminal",
-        description: "I have a take on terminals",
+        title: "Terminals",
+        description: "The place you run the code you wrote.",
         points: [
             "I have a take on Windows Terminal",
             "I have a take on iTerm",
         ]
     },
     [ETakes.browser]: {
-        title: "Browser",
-        description: "I have a take on browsers",
+        title: "Browsers",
+        description: "How you figure out what 2+2 is.",
         points: [
             "I have a take on Chrome",
             "I have a take on Firefox",
@@ -61,15 +55,15 @@ export const takes: Record<ETakes, TakeData> = {
     },
     [ETakes.accessories]: {
         title: "Accessories",
-        description: "I have a take on accessories",
+        description: "Things that go click clack",
         points: [
             "I have a take on Keyboards",
             "I have a take on Mice",
         ]
     },
     [ETakes.os]: {
-        title: "OS",
-        description: "I have a take on OS",
+        title: "Operating Systems",
+        description: "Oh boy, heated topic here...",
         points: [
             "I have a take on MacOS",
             "I have a take on Windows",
@@ -77,24 +71,38 @@ export const takes: Record<ETakes, TakeData> = {
     },
     [ETakes.learningCode]: {
         title: "Learning Code",
-        description: "Coding is like being the detective in a crime movie where you are also the murderer.",
+        description: "The torment I subject myself to daily.",
         points: [
             "Python is a great place to start. Although quite a few people hate it, if you are brand new to programming, it is the best language to learn. Python strikes a perfect balance between read/writability and functionality.",
             "Typescript is a solid medium level language. Most of my projects are in Typescript and I love it.",
             "Rust is supreme. I'm transitioning from Typescript to Rust and it is wonderful.",
         ]
     },
+    [ETakes.apps]: {
+        title: "Apps",
+        description: "Glorified websites.",
+        points: [
+            "I have a take on Discord",
+            "I have a take on Slack",
+            "I have a take on Whatsapp",
+        ]
+    },
+
+
+
+
     [ETakes.unknown]: {
         title: "Idk man",
         description: "I dont have a take on this",
         points: [
             "I dont have a take on this",
-            "lmao"
+            "lmao",
+            "(You should probably go back to the takes page. Click the thing at the top left)"
         ]
     },
     [ETakes.list]: {
         title: "List",
-        description: "List of takes",
+        description: "Its just a big list of all the takes I have",
         points: [
         ]
     },

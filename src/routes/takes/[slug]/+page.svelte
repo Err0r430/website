@@ -2,73 +2,26 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { Tween } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-	import { takes, ETakes, TooltipPosition } from './takeData';
+	import { takes, ETakes } from './takeData';
 	import '$css/takes.css';
 	import { browser } from '$app/environment';
     import { goto } from '$app/navigation';
+	import Tooltip from '$lib/tooltip/Tooltip.svelte';
+    import { tooltip, TooltipPosition } from '$lib/tooltip/tooltipStore';
 
 	let { data } = $props();
 	const slug = data.slug;
 	const sanitizedSlug = slug && slug.length > 20 ? 'unknown' : slug;
 	let takeData = takes[sanitizedSlug as ETakes] || takes[ETakes.unknown];
-
-	let tooltipVisible = $state(false);
-	let tooltipText = $state("Default tooltip text woah!"); 
-	const tooltipX = new Tween(0, { duration: 300, easing: cubicOut });
-	const tooltipY = new Tween(0, { duration: 300, easing: cubicOut });
-	let tooltipEl: HTMLElement;
-
-	// Defaults for tooltip placement relative to the cursor.
-	let tooltipPosition: TooltipPosition = TooltipPosition.BottomLeft;
-	let tooltipOffset = 10;
-
-	function handleMouseMove(event: MouseEvent) {
-		const tooltipWidth = tooltipEl ? tooltipEl.offsetWidth : 0;
-		const tooltipHeight = tooltipEl ? tooltipEl.offsetHeight : 0;
-		switch (tooltipPosition) {
-			case TooltipPosition.BottomLeft:
-				tooltipX.target = event.clientX - tooltipWidth;
-				tooltipY.target = event.clientY + tooltipOffset;
-				break;
-			case TooltipPosition.BottomRight:
-				tooltipX.target = event.clientX;
-				tooltipY.target = event.clientY + tooltipOffset;
-				break;
-			case TooltipPosition.TopLeft:
-				tooltipX.target = event.clientX - tooltipWidth;
-				tooltipY.target = event.clientY - tooltipHeight - tooltipOffset;
-				break;
-			case TooltipPosition.TopRight:
-				tooltipX.target = event.clientX + tooltipOffset;
-				tooltipY.target = event.clientY - tooltipHeight - tooltipOffset;
-				break;
-		}
-	}
-
-	onMount(() => {
-		if (browser) window.addEventListener('mousemove', handleMouseMove);
-	});
-	onDestroy(() => {
-		if (browser) window.removeEventListener('mousemove', handleMouseMove);
-	});
-
-	function showTooltip(text: string, args?: { position?: TooltipPosition; offset?: number }) {
-		tooltipText = text;
-		tooltipVisible = true;
-		tooltipPosition = args?.position ?? TooltipPosition.BottomLeft;
-		tooltipOffset = args?.offset ?? 10;
-	}
-
-	function hideTooltip() {
-		tooltipVisible = false;
-	}
 </script>
+
+<Tooltip />
 
 <section>
 	<div class="icon-container">
 		<i class="fa fa-home home-icon" aria-hidden="true"
-			onmouseenter={() => showTooltip("Take me home", { position: TooltipPosition.BottomLeft })}
-			onmouseleave={hideTooltip}
+			onmouseenter={() => tooltip.show("Take me home", { position: TooltipPosition.BottomLeft })}
+			onmouseleave={tooltip.hide}
 			onmousedown={() => window.location.href = "/?bypass=true"}
 			>
 		</i>
@@ -76,34 +29,69 @@
 
 	<div class="path-container">
 		<span
-			class="dim no-select"
+			class="dim no-select underline"
 			data-sveltekit-reload
 			onclick={() => { window.location.href = "/takes/list"; }}
 			aria-hidden="true"
-			onmouseenter={() => showTooltip("Show me all the takes...", { position: TooltipPosition.BottomRight, offset: 20 })}
-			onmouseleave={hideTooltip}
+			onmouseenter={() =>
+				tooltip.show(slug === "list" ? "You are already here. This wont do anything" : "Show me all the takes...", {
+					position: TooltipPosition.BottomRight,
+					offset: 20
+				})
+			}
+			onmouseleave={tooltip.hide}
 		>
 			takes
 		</span> <!-- There is a whitepsace here between words dont del me please ty :D-->
+		{#if slug !== "list"}
 		<span class="thin">/</span> {slug}
+		{/if}
 	</div>
 
 	<div class="take-container-header">
+		{#if slug !== "list"}
 		This is my take on&nbsp;<span class="take-title-text" aria-hidden="true"
-			onmouseenter={() => showTooltip(takeData.description, { position: TooltipPosition.BottomRight, offset: 20 })}
-			onmouseleave={hideTooltip}>
+			onmouseenter={() => tooltip.show(takeData.description, { position: TooltipPosition.BottomRight, offset: 20 })}
+			onmouseleave={tooltip.hide}>
 			{takeData.title}
 		</span>
+		{/if}
+		{#if slug === "list"}
+			<span class="underline"
+			onmouseenter={() => tooltip.show(takeData.description, { position: TooltipPosition.BottomRight, offset: 20 })}
+			onmouseleave={tooltip.hide}
+			aria-hidden="true"
+			>These</span>&nbsp;are all the topics I have a take on.
+		{/if}
 	</div>
+
 	<div class="take-container">
-		{#each takeData.points as point}
-			<p>{point}</p>
-		{/each}
-	</div>
-	<div class="tooltip-wrapper">
-		<div class="tooltip {tooltipVisible ? 'visible' : ''}" bind:this={tooltipEl}
-			style="left: {tooltipX.current}px; top: {tooltipY.current}px;">
-			{tooltipText}
+
+		{#if slug !== "list"}
+
+			{#each takeData.points as point}
+				<p>{point}</p>
+			{/each}
+
+		{/if}
+		{#if slug === "list"}
+		<div class="grid-take-container no-select">
+			{#each Object.entries(takes) as [enumKey, take]}
+				{#if take !== takes[ETakes.unknown] && take !== takes[ETakes.list]}
+					<p class="no-select"
+					onmouseenter={() => tooltip.show(take.description, { position: TooltipPosition.BottomRight, offset: 20 })}
+					onmouseleave={tooltip.hide}
+					aria-hidden="true"
+					onclick={() => window.location.href = `/takes/${enumKey.toLowerCase()}`}
+					>
+					{take.title}
+					</p>
+				{/if}
+			{/each}
 		</div>
+		{/if}
 	</div>
+
+
+
 </section>
