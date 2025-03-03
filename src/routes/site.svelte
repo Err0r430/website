@@ -90,7 +90,7 @@
     <p
       aria-hidden="true"
   onmousedown={() => window.location.href = "/takes/list"}
-    >Click me</p>
+    >View my takes</p>
   </div>
 
   <div class="text-container">

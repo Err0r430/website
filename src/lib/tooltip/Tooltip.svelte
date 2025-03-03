@@ -41,6 +41,11 @@
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 		border: 0.5px solid rgba(255, 255, 255, 0.15);
 		opacity: 0;
+		/* Add these properties to handle text overflow */
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		white-space: normal;
+		overflow: hidden;
 	}
 	
 	.tooltip.visible {

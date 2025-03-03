@@ -25,48 +25,55 @@ export const takes: Record<ETakes, TakeData> = {
         title: "IDEs",
         description: "That place you write code in.",
         points: [
-            "I have a take on VSCode",
-            "I have a take on Sublime",
+            "VSCode: New? use it. Seasoned veteran? use it. It's my daily driver and the most reliable and complete IDE out there for general programming.",
+            "Zed: It's close to being usable. The Zed team is doing wonders and I'm excited to see where it goes. Until then, it's lack of plugin support and lack of intuitive settings is a deal breaker. It might have just been me, but I genuinely can't get around their keybinds and am unable to set them.",
         ],
     },
     [ETakes.ai]: {
         title: "AI",
-        description: "Smart robot that isn't actually smart.",
+        description: "Smart robots that aren't actually smart.",
         points: [
-            "I have a take on GPT",
-            "I have a take on ChatGPT",
+            "AI is really really cool. It's INSANE that we are able to do some complex math and have a program understand an input and output something accordingly.", 
+            "I enjoy using ChatGPT and Claude. You should give em a try.",
         ],
     },
     [ETakes.terminal]: {
         title: "Terminals",
         description: "The place you run the code you wrote.",
         points: [
-            "I have a take on Windows Terminal",
-            "I have a take on iTerm",
+            "In my eyes there are only two terminals worth using: Default VSC term and Ghostty.",
+            "Ghostty is a polished and complete product perfectly tailored for developers on macOS. It's attention to detail and native feeling make it a joy to work with.",
+            "The default VSC terminal is fine. Does the job but oh my zsh doesnt look good with it.",
+            "ITerm is alright? It's a terminal emulator but it doesn't feel as native. Same applies to Alacritty.",
         ]
     },
     [ETakes.browser]: {
         title: "Browsers",
         description: "How you figure out what 2+2 is.",
         points: [
-            "I have a take on Chrome",
-            "I have a take on Firefox",
+            "Firefox is overrated. All the privacy freaks whine about how awesome it is but Gecko (its rendering engine) is far from perfect. Normal every day sites that work perfectly on chromium require a full refactor just to work on gecko.",  
+            "Chrome is chrome, default and basic as it gets.",
+            "Arc is supreme. It manages to feel more native and polished then safari itself.", 
+            "Zen is a wannabe Arc executed poorly. It attempts to cater to the privacy freaks of firefox being \"based on firefox\" while trying to copy Arc's interface. It's nowhere near as complete and polished as Arc. Just because something doesn't get new features weekly doesn't mean it's bad. It means it's complete. "
         ]
     },
     [ETakes.accessories]: {
         title: "Accessories",
         description: "Things that go click clack",
         points: [
-            "I have a take on Keyboards",
-            "I have a take on Mice",
+            "I'm not a huge keyboard guy. If it clicks, clacks, and enters text then i'm happy!",
+            "If you do really care, I use a wooting 60he.",
+            "Same goes for mice. I use an Anker vertical mouse for work and a Glorious model D for gaming.",
         ]
     },
     [ETakes.os]: {
         title: "Operating Systems",
         description: "Oh boy, heated topic here...",
         points: [
-            "I have a take on MacOS",
-            "I have a take on Windows",
+            "You came here to see my take on an operating system. Reminder that this is your choice. ",
+            "Windows is hot garbage. It's slow, memory hungry, and FULL of bloat. Nobody in their right mind should daily drive it unless they use vram heavy applications or games.",
+            "Linux as a daily OS is horrible. Sure it's fast and has literally no bloat, but it's only used by script kids and people who want to feel cool. It's only practical for servers.",
+            "MacOS is supreme. It's a fully finished product that caters directly to a developer's workflow. It's ecosystem is unmatched and style is on point." 
         ]
     },
     [ETakes.learningCode]: {
@@ -82,9 +89,11 @@ export const takes: Record<ETakes, TakeData> = {
         title: "Apps",
         description: "Glorified websites.",
         points: [
-            "I have a take on Discord",
-            "I have a take on Slack",
-            "I have a take on Whatsapp",
+            "Apps are cool, I like apps.",
+            "If I had to give you 3:",
+            "Alcove",
+            "Arc",
+            "Ghostty"
         ]
     },
 

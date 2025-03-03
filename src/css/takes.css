@@ -10,8 +10,8 @@
 * {
     letter-spacing: 1.79px;
     user-select: text;
+    box-sizing: border-box;
 }
-
 
 .take-container-header {
     font-family: 'SF Pro Bold', sans-serif;
@@ -19,7 +19,8 @@
     font-size: 4rem;
     color: var(--text-main);
     display: flex;
-    justify-content: center; /* Centers horizontally */
+    justify-content: center;
+    text-align: center;
 }
 
 .take-container {
@@ -42,7 +43,7 @@
     border-radius: 8px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
     
-    /* Center container on screen */
+    /* Center container on screen - keeping original positioning */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -50,6 +51,9 @@
     
     /* Optional max-width and text alignment */
     text-align: center;
+    max-width: 90%; /* Added to prevent overflow on small screens */
+    max-height: 80vh; /* Added to prevent overflow on small screens */
+    overflow-y: auto; /* Added scrolling for content that might overflow */
 }
 
 .take-title-text {
@@ -93,8 +97,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: 2rem;  /* Adjust spacing as needed */
-    z-index: 10;      /* Ensure it appears on top */
+    padding: 2rem;
+    z-index: 10;
 }
 
 .home-icon {
@@ -160,7 +164,102 @@
 }
 
 .grid-take-container {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Media Queries for Responsive Adjustments */
+@media (max-width: 1200px) {
+    .grid-take-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .take-container-header {
+        font-size: 3rem;
+    }
+
+    .take-container {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .take-container-header {
+        font-size: 2.5rem;
+        flex-wrap: wrap;
+        padding: 0 1rem;
+    }
+
+    .grid-take-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .take-container {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        letter-spacing: 2px;
+        width: 90%;
+    }
+
+    .icon-container {
+        padding: 1.5rem;
+    }
+
+    .path-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .take-container-header {
+        font-size: 1.75rem;
+        margin-top: 4rem;
+    }
+
+    .grid-take-container {
+        grid-template-columns: 1fr;
+    }
+
+    .take-container {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        letter-spacing: 1.5px;
+        width: 95%;
+        padding: 0.75rem;
+    }
+
+    .icon-container {
+        padding: 1rem;
+    }
+
+    .path-container {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .home-icon {
+        font-size: 1.5rem;
+    }
+
+    * {
+        letter-spacing: 1px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 360px) {
+    .take-container-header {
+        font-size: 1.5rem;
+        margin-top: 3.5rem;
+    }
+
+    .take-container {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
 }
