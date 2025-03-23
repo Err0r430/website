@@ -8,6 +8,7 @@ export enum ETakes {
     learningCode = "learningcode",
     os = "os",
     apps = "apps",
+    sweatshirts = "sweatshirts",
 
 
     list = "list",
@@ -96,8 +97,15 @@ export const takes: Record<ETakes, TakeData> = {
             "Ghostty"
         ]
     },
-
-
+    [ETakes.sweatshirts]: {
+        title: "Sweatshirts",
+        description: "The best sweatshirts.",
+        points: [
+            "Why the actual heck do sweatshirts with pull strings just let you pull the entire string through? Like what the heck I don't want to go fishing and prodding just to feed it back through so it can fall out again.",
+            "My proposal is to somehow make internal knots somewhere along the string so that they cant physically be pulled through.",
+            "Why the heckity heck do I have to spend 5 minutes feeding that stupid string back through when it could just be stuck there? Also if you're about to say \"So you can clean it\" then think again, who the heck cleans their sweatshirt string you freak.",
+        ]
+    },
 
 
     [ETakes.unknown]: {

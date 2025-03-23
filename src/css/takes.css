@@ -13,47 +13,81 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+section, .video-wrapper {
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Specific styles for SvelteKit navigation */
+a[data-sveltekit-preload-data] {
+    display: contents;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 0 1rem;
+    background-color: var(--secondary-background);
+    transition: height 0.3s ease-in-out;
+}
+
 .take-container-header {
     font-family: 'SF Pro Bold', sans-serif;
-    margin-top: 5rem;
+    margin: 8rem 0 2rem 0;
     font-size: 4rem;
     color: var(--text-main);
     display: flex;
     justify-content: center;
     text-align: center;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 0 1rem;
 }
 
 .take-container {
     color: var(--text-secondary);
-    background: linear-gradient(180deg, var(--secondary-background), var(--secondary-bg-stepup));
     font-family: 'SF Pro Regular', sans-serif;
-    letter-spacing: 3px;
-    font-size: 2rem;
-    border: 1px solid var(--secondary-bg-lighter);
-    line-height: 2.5rem;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
     
-    /* Flex settings for vertical stacking and centering items */
+    /* Make container fully integrated with document flow */
+    position: relative;
+    margin: 0;
+    padding: 0;
+    
+    /* Take full page width but with reasonable reading width */
+    width: 100%;
+    max-width: 100%;
+    
+    /* Remove specific styling that makes it look like a floating element */
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    
+    /* Content layout - fill available space */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    
-    /* Styling enhancements */
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-    
-    /* Center container on screen - keeping original positioning */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* Optional max-width and text alignment */
-    text-align: center;
-    max-width: 90%; /* Added to prevent overflow on small screens */
-    max-height: 80vh; /* Added to prevent overflow on small screens */
-    overflow-y: auto; /* Added scrolling for content that might overflow */
 }
 
 .take-title-text {
@@ -81,10 +115,12 @@
     position: absolute;
     bottom: -2px; /* adjust as needed */
     left: 0;
+    right: 0; /* Ensure the underline stays within the text width */
     height: 2px;
     background: var(--text-main);
     width: 0;
     animation: underline 1s cubic-bezier(.32, .28, .48, 1.01) forwards;
+    max-width: 100%; /* Prevent the underline from extending beyond text */
 }
 
 @keyframes underline {
@@ -99,11 +135,24 @@
     right: 0;
     padding: 2rem;
     z-index: 10;
+    display: flex;
+    gap: 1.5rem;
 }
 
-.home-icon {
+.home-icon, .binoculars-icon {
     color: var(--text-main);
     font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.home-icon:hover, .binoculars-icon:hover {
+    transform: scale(1.1);
+    color: #3498db;
+}
+
+.binoculars-icon {
+    margin-left: 0.5rem;
 }
 
 .hover-target {
@@ -165,72 +214,210 @@
 
 .grid-take-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
     width: 100%;
+    max-width: 1200px;
+    padding: 2rem 1rem;
+}
+
+.take-card {
+    background: linear-gradient(145deg, var(--secondary-bg-stepup), var(--secondary-bg-lighter));
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: var(--delay, 0s);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.take-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.take-card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #8e44ad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.take-card:hover:before {
+    transform: scaleX(1);
+}
+
+.take-card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.take-content-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.take-point-card {
+    background: linear-gradient(145deg, var(--secondary-bg-stepup), var(--secondary-bg-lighter));
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: fadeInSide 0.5s ease forwards;
+    animation-delay: var(--delay, 0s);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.take-point-card p {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    letter-spacing: 1.5px;
+}
+
+.take-point-card:nth-child(even) {
+    transform: translateX(20px);
+}
+
+@keyframes fadeInSide {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Media Queries for Responsive Adjustments */
 @media (max-width: 1200px) {
     .grid-take-container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .take-container-header {
+        font-size: 3.5rem;
     }
 }
 
 @media (max-width: 992px) {
     .take-container-header {
         font-size: 3rem;
+        margin: 7rem 0 1.5rem 0;
     }
-
-    .take-container {
-        font-size: 1.75rem;
-        line-height: 2.25rem;
+    
+    .take-card-title {
+        font-size: 1.6rem;
+    }
+    
+    .take-point-card p {
+        font-size: 1.3rem;
+        line-height: 1.9rem;
     }
 }
 
 @media (max-width: 768px) {
     .take-container-header {
         font-size: 2.5rem;
-        flex-wrap: wrap;
-        padding: 0 1rem;
+        margin: 6rem 0 1.5rem 0;
+        line-height: 3rem;
     }
 
     .grid-take-container {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        padding: 1rem 0.5rem;
+    }
+    
+    .take-card {
+        padding: 1.5rem 1rem;
+        min-height: 100px;
+    }
+    
+    .take-card-title {
+        font-size: 1.4rem;
     }
 
-    .take-container {
-        font-size: 1.5rem;
-        line-height: 2rem;
-        letter-spacing: 2px;
-        width: 90%;
+    .take-point-card {
+        padding: 1.2rem;
+    }
+    
+    .take-point-card p {
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        letter-spacing: 1.2px;
     }
 
     .icon-container {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .path-container {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 }
 
 @media (max-width: 576px) {
     .take-container-header {
         font-size: 1.75rem;
-        margin-top: 4rem;
+        margin: 5rem 0 1rem 0;
+        line-height: 2.5rem;
     }
 
     .grid-take-container {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
-
-    .take-container {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        letter-spacing: 1.5px;
-        width: 95%;
-        padding: 0.75rem;
+    
+    .take-card {
+        min-height: 80px;
+        padding: 1.2rem 1rem;
+    }
+    
+    .take-card-title {
+        font-size: 1.3rem;
+    }
+    
+    .take-point-card {
+        padding: 1rem;
+    }
+    
+    .take-point-card p {
+        font-size: 1.1rem;
+        line-height: 1.6rem;
+        letter-spacing: 1px;
     }
 
     .icon-container {
@@ -245,21 +432,57 @@
     .home-icon {
         font-size: 1.5rem;
     }
-
-    * {
-        letter-spacing: 1px;
+    
+    section {
+        overflow-x: hidden;
+        padding: 0 0.5rem;
     }
+}
+
+/* Video wrapper styles */
+.video-wrapper {
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* For very small screens */
 @media (max-width: 360px) {
     .take-container-header {
         font-size: 1.5rem;
-        margin-top: 3.5rem;
+        margin: 4.5rem 0 1rem 0;
+        line-height: 2rem;
     }
-
-    .take-container {
+    
+    .take-card {
+        min-height: 70px;
+    }
+    
+    .take-card-title {
+        font-size: 1.2rem;
+    }
+    
+    .take-point-card p {
         font-size: 1rem;
         line-height: 1.5rem;
+    }
+    
+    .icon-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .home-icon, .binoculars-icon {
+        font-size: 1.5rem;
     }
 }
