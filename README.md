@@ -51,5 +51,5 @@ pnpm preview
 ## Final notes
 I used a proprietary nginx config to forward my domain (error430.dev) to my servers localhost and used certbot for ssl.
 
-As I said, I am no web dev and am not familiar with svelte as much as I am with something like nextjs. I genuinely loved making some of these elements (particularly the windows error popup) and following tutorials for this. I will 100% revisit svelte in the future and might improve this in the future. If you know of a way to improve things or want to spend some of your time sifting through the horribly structured project to make a PR then by all means thank you! Otherwise, this was a super fun project I spent ~3h on. 
+As I said, I am no web dev and am not familiar with svelte as much as I am with something like nextjs. I genuinely loved making some of these elements (particularly the windows error popup) and following tutorials for this. I will 100% revisit svelte in the future and might improve this in the future. If you know of a way to improve things or want to spend some of your time sifting through the horribly structured project to make a PR then by all means thank you! Otherwise, this was a super fun project I spent ~3h on.
 
