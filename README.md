@@ -41,7 +41,6 @@ pnpm dev
 ```sh
 pnpm build
 ```
-
 ```sh
 pnpm preview
 ```
