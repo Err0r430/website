@@ -7,5 +7,6 @@ export default defineConfig({
 	preview: {
 		host: '0.0.0.0', // Allow external access if needed
 		port: 4173,      // Use the port your server runs on
+		allowedHosts: true
 	},
 });
